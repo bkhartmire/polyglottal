@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
+using polyglottal.Models;
 
 namespace polyglottal
 {
@@ -20,6 +22,11 @@ namespace polyglottal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<BookListDatabaseSettings>(
+        Configuration.GetSection(nameof(BookListDatabaseSettings)));
+
+            services.AddSingleton<IBookListDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<BookListDatabaseSettings>>().Value);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
