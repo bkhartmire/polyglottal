@@ -2,6 +2,7 @@
   "name": "polyglottal",
   "version": "0.1.0",
   "private": true,
+  "proxy":"https://localhost:5001",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "3.3.1",
