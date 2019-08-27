@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using polyglottal.Models;
+using polyglottal.Services;
 
 namespace polyglottal
 {
@@ -27,6 +28,7 @@ namespace polyglottal
 
             services.AddSingleton<IBookListDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookListDatabaseSettings>>().Value);
+            services.AddSingleton<BookService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
