@@ -1,11 +1,8 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
 using polyglottal.Models;
 using polyglottal.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 
 namespace polyglottal.Controllers
@@ -14,14 +11,21 @@ namespace polyglottal.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
+        // private string _SecretApiKey = null;
+        // _SecretApiKey = Configuration["GoogleBooks:ApiKey"]
+        public IConfiguration Configuration { get; }
+
         private readonly BookService _bookService;
-        public BooksController(BookService bookService)
+        public BooksController(BookService bookService, IConfiguration config)
         {
             _bookService = bookService;
+            Configuration = config;
         }
+
         [HttpGet]
         public ActionResult<List<Book>> Get() =>
             _bookService.Get();
+
 
         [HttpPost]
         public ActionResult<Book> Create(Book book)
