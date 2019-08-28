@@ -18,6 +18,7 @@ export default class Form extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
+    e.target.reset();
     this.props.getResults(this.state.title, this.state.author);
   }
   render() {

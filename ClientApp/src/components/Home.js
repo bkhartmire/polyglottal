@@ -20,7 +20,10 @@ export class Home extends Component {
   }
 
   addBook(title, author) {
-    this.setState({ books: [...this.state.books, { title, author }] });
+    this.setState({
+      books: [...this.state.books, { title, author }],
+      searchResults: []
+    });
   }
 
   removeBook(id) {
