@@ -9,17 +9,34 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: []
+      searchResults: [],
+      books: []
     };
   }
 
-  async getResults(title, author) {
+  async componentDidMount() {
+    const resp = await axios.get("api/books");
+    this.setState({ books: resp.data });
+  }
+
+  addBook(title, author) {
+    this.setState({ books: [...this.state.books, { title, author }] });
+    debugger;
+  }
+
+  async getResults(title = null, author = null) {
     const resp = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?key=${googleApiKey}&printType=books&q=inauthor:${author}+intitle:${title}&langRestrict=en`
     );
     const results = resp.data.items
       .map(item => item.volumeInfo)
-      .filter(item => !!item.imageLinks && !!item.imageLinks.smallThumbnail);
+      .filter(
+        item =>
+          !!item.imageLinks &&
+          !!item.imageLinks.smallThumbnail &&
+          !!item.authors &&
+          item.authors.length > 0
+      );
     this.setState({ searchResults: results });
   }
 
@@ -28,8 +45,11 @@ export class Home extends Component {
       <div>
         <h2>Add a new book to your list.</h2>
         <Form getResults={(title, author) => this.getResults(title, author)} />
-        <SearchResults results={this.state.searchResults} />
-        <BookList />
+        <SearchResults
+          results={this.state.searchResults}
+          addBook={(title, author) => this.addBook(title, author)}
+        />
+        <BookList books={this.state.books} />
       </div>
     );
   }

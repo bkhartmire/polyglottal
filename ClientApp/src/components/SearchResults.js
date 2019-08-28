@@ -7,6 +7,7 @@ export default class SearchResults extends Component {
       <div id="search-results-container">
         {this.props.results.map(result => (
           <Result
+            addBook={(title, author) => this.props.addBook(title, author)}
             title={result.title}
             author={result.authors[0]}
             pages={result.pageCount}
