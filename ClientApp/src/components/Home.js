@@ -21,7 +21,10 @@ export class Home extends Component {
 
   addBook(title, author) {
     this.setState({ books: [...this.state.books, { title, author }] });
-    debugger;
+  }
+
+  removeBook(id) {
+    this.setState({ books: this.state.books.filter(book => book.id !== id) });
   }
 
   async getResults(title = null, author = null) {
@@ -49,7 +52,10 @@ export class Home extends Component {
           results={this.state.searchResults}
           addBook={(title, author) => this.addBook(title, author)}
         />
-        <BookList books={this.state.books} />
+        <BookList
+          books={this.state.books}
+          removeBook={id => this.removeBook(id)}
+        />
       </div>
     );
   }
