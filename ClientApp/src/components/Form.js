@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+const axios = require("axios");
 
 export default class Form extends Component {
   constructor(props) {
@@ -16,9 +17,9 @@ export default class Form extends Component {
       : this.setState({ author: e.target.value });
   }
 
-  handleSubmit(e) {
-    this.preventDefault();
-    const body = { title: this.state.title, author: this.state.author };
+  async handleSubmit(e) {
+    e.preventDefault();
+    this.props.getResults(this.state.title, this.state.author);
   }
   render() {
     return (
