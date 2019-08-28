@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-const axios = require("axios");
 
 export default class Form extends Component {
   constructor(props) {

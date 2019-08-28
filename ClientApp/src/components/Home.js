@@ -17,8 +17,9 @@ export class Home extends Component {
     const resp = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?key=${googleApiKey}&printType=books&q=inauthor:${author}+intitle:${title}&langRestrict=en`
     );
-
-    const results = resp.data.items.map(item => item.volumeInfo);
+    const results = resp.data.items
+      .map(item => item.volumeInfo)
+      .filter(item => !!item.imageLinks && !!item.imageLinks.smallThumbnail);
     this.setState({ searchResults: results });
   }
 

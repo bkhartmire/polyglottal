@@ -1,0 +1,23 @@
+.thumbail {
+  float: left;
+  margin: 10px;
+  height: 200px;
+  width: 128px;
+}
+
+.result-info {
+  margin: 15px;
+  padding-top: 10px;
+  /* overflow-y: scroll; */
+  height: 220px;
+}
+
+.summary {
+  height: 85px;
+  overflow-y: scroll;
+}
+
+button {
+  float: right;
+  border-radius: 2px;
+}

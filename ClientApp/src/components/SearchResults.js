@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import Result from "./Result";
 
 export default class SearchResults extends Component {
-  componentDidUpdate() {
-    this.props.results;
-    debugger;
-  }
   render() {
-    return <h1>Search Results</h1>;
+    return (
+      <div id="search-results-container">
+        {this.props.results.map(result => (
+          <Result
+            title={result.title}
+            author={result.authors[0]}
+            pages={result.pageCount}
+            thumbnail={result.imageLinks.smallThumbnail}
+            summary={result.description}
+            published={result.publishedDate}
+          />
+        ))}
+      </div>
+    );
   }
 }

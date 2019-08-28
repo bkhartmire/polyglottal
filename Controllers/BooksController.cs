@@ -11,15 +11,11 @@ namespace polyglottal.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        // private string _SecretApiKey = null;
-        // _SecretApiKey = Configuration["GoogleBooks:ApiKey"]
-        public IConfiguration Configuration { get; }
 
         private readonly BookService _bookService;
-        public BooksController(BookService bookService, IConfiguration config)
+        public BooksController(BookService bookService)
         {
             _bookService = bookService;
-            Configuration = config;
         }
 
         [HttpGet]
