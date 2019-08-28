@@ -1,0 +1,25 @@
+.book {
+  margin-top: 15px;
+}
+
+img.delete {
+  height: 21px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  border-bottom: solid 1px white;
+  padding: 1px;
+}
+
+img.delete:hover {
+  cursor: pointer;
+  border-bottom: solid 1px;
+}
+
+.title {
+  display: inline-block;
+}
+
+.author {
+  display: block;
+}
