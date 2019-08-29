@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Form from "./Form";
-import BookList from "./BookList";
 import SearchResults from "./SearchResults";
 const axios = require("axios");
 
@@ -9,25 +8,15 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [],
-      books: []
+      searchResults: []
     };
   }
 
-  async componentDidMount() {
-    const resp = await axios.get("api/books");
-    this.setState({ books: resp.data });
-  }
-
-  addBook(title, author) {
+  addUnreadBook(title, author) {
     this.setState({
       books: [...this.state.books, { title, author }],
       searchResults: []
     });
-  }
-
-  removeBook(id) {
-    this.setState({ books: this.state.books.filter(book => book.id !== id) });
   }
 
   async getResults(title = null, author = null) {
@@ -44,7 +33,6 @@ export class Home extends Component {
             !!item.authors &&
             item.authors.length > 0
         );
-      debugger;
       this.setState({ searchResults: results });
     }
   }
@@ -52,15 +40,11 @@ export class Home extends Component {
   render() {
     return (
       <div>
-        <h2>Add a new book to your list.</h2>
+        <h2>Search for new books you'd like to read.</h2>
         <Form getResults={(title, author) => this.getResults(title, author)} />
         <SearchResults
           results={this.state.searchResults}
-          addBook={(title, author) => this.addBook(title, author)}
-        />
-        <BookList
-          books={this.state.books}
-          removeBook={id => this.removeBook(id)}
+          addUnreadBook={(title, author) => this.addUnreadBook(title, author)}
         />
       </div>
     );

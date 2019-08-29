@@ -5,7 +5,7 @@ const axios = require("axios");
 export default class Result extends Component {
   async handleClick(e) {
     e.preventDefault();
-    this.props.addBook(this.props.title, this.props.author);
+    this.props.addUnreadBook(this.props.title, this.props.author);
     await axios.post("api/books", {
       title: this.props.title,
       author: this.props.author
