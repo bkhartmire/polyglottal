@@ -13,7 +13,6 @@ export default class UnreadBookList extends Component {
   }
 
   async removeBook(id) {
-    debugger;
     this.setState({ books: this.state.books.filter(book => book.id !== id) });
     await axios.delete("/api/books/" + id);
   }
@@ -28,6 +27,7 @@ export default class UnreadBookList extends Component {
             author={book.author}
             key={book.id}
             id={book.id}
+            thumbnail={book.thumbnail}
             removeBook={id => this.removeBook(id)}
           />
         ))}

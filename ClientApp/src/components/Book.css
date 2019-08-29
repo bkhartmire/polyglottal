@@ -1,5 +1,18 @@
 .book {
   margin-top: 15px;
+  display: block;
+  float: left;
+}
+
+img.thumbnail {
+  float: left;
+  margin: 10px;
+  height: 100px;
+  width: 65px;
+}
+
+.title {
+  margin-top: 10px;
 }
 
 img.delete {
