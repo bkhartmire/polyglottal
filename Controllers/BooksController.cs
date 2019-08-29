@@ -18,9 +18,9 @@ namespace polyglottal.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet]
-        public ActionResult<List<Book>> Get() =>
-            _bookService.Get();
+        [HttpGet("{read}")]
+        public ActionResult<List<Book>> Get(bool read) =>
+            _bookService.Get(read);
 
 
         [HttpPost]
