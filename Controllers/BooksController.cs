@@ -29,6 +29,20 @@ namespace polyglottal.Controllers
             _bookService.Create(book);
             return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
         }
+
+        [HttpPut("{id:length(24)}")]
+        public IActionResult Update(string id, Book bookIn)
+        {
+            var book = _bookService.Get(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _bookService.Update(id, bookIn);
+            return NoContent();
+        }
+
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {

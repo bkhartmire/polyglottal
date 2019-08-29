@@ -14,7 +14,21 @@ export default class UnreadBookList extends Component {
 
   async removeBook(id) {
     this.setState({ books: this.state.books.filter(book => book.id !== id) });
-    await axios.delete("/api/books/" + id);
+    await axios.delete("api/books/" + id);
+  }
+
+  async markRead(id) {
+    this.setState({ books: this.state.books.filter(book => book.id !== id) });
+    await axios.put("api/books/" + id, {
+      id: this.props.id,
+      title: this.props.title,
+      author: this.props.author,
+      summary: this.props.summary,
+      thumbnail: this.props.thumbnail,
+      pages: this.props.pages,
+      published: this.props.published,
+      read: true
+    });
   }
 
   render() {
@@ -29,6 +43,7 @@ export default class UnreadBookList extends Component {
             id={book.id}
             thumbnail={book.thumbnail}
             removeBook={id => this.removeBook(id)}
+            markRead={id => this.markRead(id)}
           />
         ))}
       </div>

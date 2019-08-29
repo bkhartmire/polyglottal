@@ -1,6 +1,6 @@
 .book {
   margin-top: 15px;
-  display: block;
+  width: 100%;
   float: left;
 }
 
@@ -27,6 +27,15 @@ img.delete {
 img.delete:hover {
   cursor: pointer;
   border-bottom: solid 1px;
+}
+
+button {
+  margin-left: 10px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+.book-events {
+  display: inline-block;
 }
 
 .title {

@@ -2,7 +2,7 @@
   "name": "polyglottal",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:5001",
+  "proxy": "https://localhost:5001/",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",

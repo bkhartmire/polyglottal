@@ -7,7 +7,11 @@ export default class Result extends Component {
     e.preventDefault();
     await axios.post("api/books", {
       title: this.props.title,
-      author: this.props.author
+      author: this.props.author,
+      summary: this.props.summary,
+      thumbnail: this.props.thumbnail,
+      pages: this.props.pages,
+      published: this.props.published
     });
   }
   render() {
